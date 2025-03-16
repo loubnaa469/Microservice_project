@@ -1,13 +1,9 @@
 package com.example.Client_Service.Model;
-
-
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Component
 @Entity
 @Getter
@@ -16,10 +12,11 @@ import org.springframework.stereotype.Component;
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    String nom;
-    String prenom;
-    String email;
+    private int id;
+    private String nom;
+    private String prenom;
+    private String email;
+    private double solde;
 
     public int getId() {
         return id;
@@ -36,6 +33,10 @@ public class Client {
     public String getEmail() {
         return email;
     }
+    public double getSolde() {
+        return solde;
+    }
+
 
     public void setId(int id) {
         this.id = id;
@@ -53,11 +54,17 @@ public class Client {
         this.email = email;
     }
 
+    public void setSolde(double solde) {
+        this.solde = solde;
+    }
+
+
     public Client(int id, String nom, String prenom, String email) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
+        this.solde = solde;
     }
 
     public Client() {

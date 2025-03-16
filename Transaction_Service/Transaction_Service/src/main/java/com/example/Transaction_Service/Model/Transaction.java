@@ -16,10 +16,11 @@ public class Transaction {
     private Long titreId;
     private int quantite;
     private double prixUnitaire;
+    private String sens;
     private LocalDateTime dateTransaction;
 
     public Transaction() {
-        this.dateTransaction = LocalDateTime.now(); // Définit automatiquement la date
+        this.dateTransaction = LocalDateTime.now();
     }
 
 
@@ -30,6 +31,7 @@ public class Transaction {
         this.clientId = clientId;
         this.titreId = titreId;
         this.quantite = quantite;
+        this.sens = sens;
         this.prixUnitaire = prixUnitaire;
         this.dateTransaction = dateTransaction;
     }
@@ -41,6 +43,7 @@ public class Transaction {
     public void setClientId(Long clientId) {
         this.clientId = clientId;
     }
+
 
     public void setTitreId(Long titreId) {
         this.titreId = titreId;
@@ -81,6 +84,33 @@ public class Transaction {
     public LocalDateTime getDateTransaction() {
         return dateTransaction;
     }
+    public String getSens() {
+        return sens;
+    }
 
-    // Getters et Setters
+    public void setSens(String sens) {
+        this.sens = sens;
+    }
+    @Transient
+    private Client client;
+
+    @Transient
+    private Titre titre;
+
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Titre getTitre() {
+        return titre;
+    }
+
+    public void setTitre(Titre titre) {
+        this.titre = titre;
+    }
 }

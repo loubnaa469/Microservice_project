@@ -20,7 +20,7 @@ public class TitreController {
     }
 
     // Endpoint pour obtenir les détails d'un titre
-    @GetMapping("/details/{id}")
+    @GetMapping("/{id}")
     public Titre obtenirDetails(@PathVariable Long id) {
         return titreService.obtenirDetails(id);
     }
