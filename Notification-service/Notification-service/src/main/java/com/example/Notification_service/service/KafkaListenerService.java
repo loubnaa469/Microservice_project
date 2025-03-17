@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class KafkaListenerService {
 
-    @KafkaListener(topics = "transaction-events", groupId = "notification-group")
+    @KafkaListener(topics = "transaction_topic", groupId = "client-service-group")
     public void consumeTransactionEvent(String message) {
         System.out.println("📩 Nouvelle notification reçue : " + message);
     }
