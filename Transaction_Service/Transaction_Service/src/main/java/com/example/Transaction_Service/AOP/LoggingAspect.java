@@ -1,4 +1,6 @@
 package com.example.Transaction_Service.AOP;
+
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -27,14 +29,15 @@ public class LoggingAspect {
 
     // Après le succès de l'exécution de la méthode
     @AfterReturning(value = "serviceMethods()", returning = "result")
-    public void logAfterMethodExecution(Object result) {
-        Signature signature = ((org.aspectj.lang.JoinPoint) result).getSignature();
-        LOGGER.info("Méthode " + signature.getName() + " exécutée avec succès. Résultat : " + result);
+    public void logAfterMethodExecution(JoinPoint joinPoint, Object result) {
+        Signature signature = joinPoint.getSignature(); // ✅ Utilisation correcte de JoinPoint
+        LOGGER.info("Méthode {} exécutée avec succès. Résultat : {}", signature.getName(), result);
     }
 
     // Si une exception est lancée pendant l'exécution
     @AfterThrowing(value = "serviceMethods()", throwing = "exception")
-    public void logMethodException(Exception exception) {
-        LOGGER.error("Erreur dans l'exécution de la méthode : " + exception.getMessage(), exception);
+    public void logMethodException(JoinPoint joinPoint, Exception exception) {
+        Signature signature = joinPoint.getSignature();
+        LOGGER.error("Erreur dans l'exécution de la méthode {} : {}", signature.getName(), exception.getMessage(), exception);
     }
 }

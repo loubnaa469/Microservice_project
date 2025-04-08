@@ -1,0 +1,74 @@
+version: '3.8'
+
+networks:
+  my_network:
+
+services:
+  eureka-server:
+    image: loubna/eureka-service:v1
+    container_name: eureka-service
+    ports:
+      - "8761:8761"
+    networks:
+      - my_network
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: TransactionDB
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - my_network
+
+  client-service:
+    image: loubna/client:v1
+    container_name: client-service
+    depends_on:
+      - eureka-server
+    ports:
+      - "9090:9090"
+    networks:
+      - my_network
+
+  titre-service:
+    image: loubna/titre:v1
+    container_name: titre-service
+    depends_on:
+      - eureka-server
+    ports:
+      - "8080:8080"
+    networks:
+      - my_network
+
+  transaction-service:
+    image: loubna/transaction:v1
+    container_name: transaction-service
+    depends_on:
+      - postgres
+      - eureka-server
+    ports:
+      - "8082:8082"
+    networks:
+      - my_network
+
+  api-gateway:
+    image: loubna/api-gateway:v1
+    container_name: api-gateway
+    depends_on:
+      - client-service
+      - titre-service
+      - transaction-service
+      - eureka-server
+    ports:
+      - "9999:9999"
+    networks:
+      - my_network
+
+volumes:
+  postgres_data:

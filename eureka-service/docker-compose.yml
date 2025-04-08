@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  eureka-service:
+    image: loubna/eureka-service:v1  # Assurez-vous d'avoir construit et tagué cette image
+    container_name: eureka-service
+    ports:
+      - "8761:8761"
+    environment:
+      - eureka.client.registerWithEureka=false
+      - eureka.client.fetchRegistry=false
+      - eureka.server.enableSelfPreservation=false
+    restart: always

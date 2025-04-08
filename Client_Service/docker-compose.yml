@@ -1,0 +1,41 @@
+version: '3.8'
+
+networks:
+  my_network:  # 🔹 Définition du réseau
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_DB: ClientDB  # 🔹 Correspond au nom de la base de données utilisée
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - my_network  # 🔹 Ajout au réseau
+
+  client_service:  # 🔹 Correction du nom du service
+    image: loubna/client:v1
+    container_name: client_service
+    depends_on:
+      - postgres
+    environment:
+      SPRING_APPLICATION_NAME: client-service  # 🔹 Nom d'application correct
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres_db:5432/ClientDB  # 🔹 Correction du nom de la base de données
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SERVER_PORT: 9090
+    ports:
+      - "9090:9090"
+    networks:
+      - my_network  # 🔹 Ajout au réseau
+
+volumes:
+  postgres_data:

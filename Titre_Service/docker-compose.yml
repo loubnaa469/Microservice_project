@@ -1,0 +1,41 @@
+version: '3.8'
+
+networks:
+  my_network:  # 🔹 Définition du réseau
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_DB: TitreDB
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - my_network  # 🔹 Ajout au réseau
+
+  titre_service:
+    image: loubna/titre:v1
+    container_name: titre_service
+    depends_on:
+      - postgres
+    environment:
+      SPRING_APPLICATION_NAME: Titre-Service
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres_db:5432/TitreDB  # 🔹 Assure-toi que c'est bien le nom du conteneur
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SERVER_PORT: 8080
+    ports:
+      - "8080:8080"
+    networks:
+      - my_network  # 🔹 Ajout au réseau
+
+volumes:
+  postgres_data:

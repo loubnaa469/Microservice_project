@@ -4,9 +4,8 @@ import com.example.Transaction_Service.Model.Client;
 import com.example.Transaction_Service.Model.Titre;
 import com.example.Transaction_Service.Model.Transaction;
 import com.example.Transaction_Service.Service.TransactionService;
-/*
-// import com.example.Transaction_Service.kafka.KafkaProducerService;  // 📌 Import du service Kafka
-*/
+
+// import com.example.Transaction_Service.kafka.KafkaProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
