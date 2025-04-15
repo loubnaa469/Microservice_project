@@ -1,0 +1,153 @@
+version: '3.8'
+
+services:
+  # Eureka Server
+  eureka-service:
+    image: loubna/eureka-service:v1
+    container_name: eureka-service
+    ports:
+      - "8761:8761"
+    networks:
+      - spring-net
+
+  # Gateway
+  gateway:
+    image: loubna/gateway:v1
+    container_name: gateway
+    ports:
+      - "9999:9999"
+    depends_on:
+      - eureka-service
+    environment:
+      - SPRING_APPLICATION_NAME=gateway
+      - SERVER_PORT=9999
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-service:8761/eureka
+      - EUREKA_CLIENT_REGISTER_WITH_EUREKA=true
+      - EUREKA_CLIENT_FETCH_REGISTRY=true
+      - EUREKA_INSTANCE_PREFER_IP_ADDRESS=true
+      - EUREKA_INSTANCE_HOSTNAME=gateway
+      - SPRING_CLOUD_GATEWAY_DISCOVERY_LOCATOR_ENABLED=true
+      - SPRING_CLOUD_GATEWAY_DISCOVERY_LOCATOR_LOWER_CASE_SERVICE_ID=true
+      - SPRING_CLOUD_DISCOVERY_ENABLED=true
+      - SPRING_CLOUD_LOADBALANCER_RIBBON_ENABLED=false
+    networks:
+      - spring-net
+
+  # Client Service
+  client-service:
+    image: loubna/client:v1
+    container_name: client-service
+    depends_on:
+      - eureka-service
+      - postgres_db
+    environment:
+      - SPRING_APPLICATION_NAME=client-service
+      - SERVER_PORT=9090
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-service:8761/eureka
+      - EUREKA_INSTANCE_PREFER_IP_ADDRESS=true
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_db:5432/ClientDB
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.PostgreSQLDialect
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - "9090:9090"
+    networks:
+      - spring-net
+
+  # Titre Service
+  titre-service:
+    image: loubna/titre:v1
+    container_name: titre-service
+    depends_on:
+      - postgres_db
+      - eureka-service
+    environment:
+      - SPRING_APPLICATION_NAME=titre-service
+      - SERVER_PORT=8080
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_db:5432/TitreDB
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.PostgreSQLDialect
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-service:8761/eureka
+      - EUREKA_INSTANCE_PREFER_IP_ADDRESS=true
+    ports:
+      - "8080:8080"
+    networks:
+      - spring-net
+
+  # Transaction Service
+  transaction-service:
+    image: loubna/transaction:v1
+    container_name: transaction-service
+    depends_on:
+      - postgres_db
+      - eureka-service
+    environment:
+      - SPRING_APPLICATION_NAME=transaction-service
+      - SERVER_PORT=8083
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_db:5432/TransactionDB
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.PostgreSQLDialect
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-service:8761/eureka
+      - EUREKA_INSTANCE_PREFER_IP_ADDRESS=true
+    ports:
+      - "8083:8083"
+    networks:
+      - spring-net
+
+  # Zookeeper
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.0.1
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - spring-net
+
+  # Kafka
+  kafka:
+    image: confluentinc/cp-kafka:7.0.1
+    container_name: kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://kafka:9094
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - spring-net
+
+  # PostgreSQL
+  postgres_db:
+    image: postgres:15
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: ClientDB
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - spring-net
+
+networks:
+  spring-net:
+    driver: bridge
+
+volumes:
+  postgres_data:

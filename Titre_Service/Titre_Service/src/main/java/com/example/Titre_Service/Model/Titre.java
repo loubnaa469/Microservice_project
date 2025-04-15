@@ -1,8 +1,8 @@
 package com.example.Titre_Service.Model;
-
-
 import jakarta.persistence.*;
 import lombok.*;
+
+
 
 @Entity
 @Table(name = "titres")

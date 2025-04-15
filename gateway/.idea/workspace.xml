@@ -5,35 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67453d83-0260-414f-a7e8-df0f35615fbc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Transaction_Service/.idea/artifacts/Transaction_Service_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Client_Service/Client_Service/src/main/java/com/example/Client_Service/ClientServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client_Service/Client_Service/src/main/java/com/example/Client_Service/ClientServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client_Service/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client_Service/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Client_Service/Client_Service/src/main/java/com/example/Client_Service/Controller/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client_Service/Client_Service/src/main/java/com/example/Client_Service/Controller/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client_Service/Client_Service/src/main/java/com/example/Client_Service/Model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Client_Service/Client_Service/src/main/java/com/example/Client_Service/Model/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Client_Service/Client_Service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Client_Service/Client_Service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Titre_Service/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Titre_Service/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Titre_Service/Titre_Service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Titre_Service/Titre_Service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Client_Service/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../Client_Service/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Titre_Service/Titre_Service/src/main/java/com/example/Titre_Service/Controller/TitreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Titre_Service/Titre_Service/src/main/java/com/example/Titre_Service/Controller/TitreController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Titre_Service/Titre_Service/src/main/java/com/example/Titre_Service/Model/Titre.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Titre_Service/Titre_Service/src/main/java/com/example/Titre_Service/Model/Titre.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Titre_Service/Titre_Service/src/main/java/com/example/Titre_Service/repo/TitreRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Titre_Service/Titre_Service/src/main/java/com/example/Titre_Service/repo/TitreRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Titre_Service/Titre_Service/src/main/java/com/example/Titre_Service/Service/TitreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Titre_Service/Titre_Service/src/main/java/com/example/Titre_Service/Service/TitreService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Titre_Service/Titre_Service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Titre_Service/Titre_Service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Transaction_Service/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Transaction_Service/.idea/Transaction_Service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Transaction_Service/.idea/Transaction_Service.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Transaction_Service/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Transaction_Service/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Transaction_Service/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Transaction_Service/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Transaction_Service/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Titre_Service/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../Titre_Service/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Transaction_Service/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Transaction_Service/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Transaction_Service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../Transaction_Service/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Transaction_Service/Transaction_Service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Transaction_Service/Transaction_Service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Transaction_Service/Transaction_Service/src/main/java/com/example/Transaction_Service/AOP/LoggingAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Transaction_Service/Transaction_Service/src/main/java/com/example/Transaction_Service/AOP/LoggingAspect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Transaction_Service/Transaction_Service/src/main/java/com/example/Transaction_Service/Controller/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Transaction_Service/Transaction_Service/src/main/java/com/example/Transaction_Service/Controller/TransactionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Transaction_Service/Transaction_Service/src/main/java/com/example/Transaction_Service/Model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Transaction_Service/Transaction_Service/src/main/java/com/example/Transaction_Service/Model/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Transaction_Service/Transaction_Service/src/main/java/com/example/Transaction_Service/Model/Titre.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Transaction_Service/Transaction_Service/src/main/java/com/example/Transaction_Service/Model/Titre.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Transaction_Service/Transaction_Service/src/main/java/com/example/Transaction_Service/Model/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Transaction_Service/Transaction_Service/src/main/java/com/example/Transaction_Service/Model/Transaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Transaction_Service/Transaction_Service/src/main/java/com/example/Transaction_Service/feignclients/TitreFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Transaction_Service/Transaction_Service/src/main/java/com/example/Transaction_Service/feignclients/TitreFeignClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Transaction_Service/Transaction_Service/src/main/java/com/example/Transaction_Service/Service/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Transaction_Service/Transaction_Service/src/main/java/com/example/Transaction_Service/Service/TransactionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Transaction_Service/Transaction_Service/src/main/java/com/example/Transaction_Service/TransactionServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Transaction_Service/Transaction_Service/src/main/java/com/example/Transaction_Service/TransactionServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Transaction_Service/Transaction_Service/src/main/java/com/example/Transaction_Service/feignclients/ClientFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Transaction_Service/Transaction_Service/src/main/java/com/example/Transaction_Service/feignclients/ClientFeignClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Transaction_Service/Transaction_Service/src/main/java/com/example/Transaction_Service/repo/TransactionRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Transaction_Service/Transaction_Service/src/main/java/com/example/Transaction_Service/repo/TransactionRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Transaction_Service/Transaction_Service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Transaction_Service/Transaction_Service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Transaction_Service/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../Transaction_Service/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../config-server/config-server/src/main/java/com/example/config_server/ConfigServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../config-server/config-server/src/main/java/com/example/config_server/ConfigServerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../config-server/config-server/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../config-server/config-server/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eureka-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../eureka-service/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eureka-service/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../eureka-service/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../eureka-service/eureka-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../eureka-service/eureka-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gateway.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gateway.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gateway/src/main/java/com/example/gateway/GatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/java/com/example/gateway/GatewayApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gateway/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,6 +45,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Dockerfile" />
       </list>
     </option>
   </component>
@@ -67,14 +68,20 @@
   &quot;keyToString&quot;: {
     &quot;Application.GatewayApplication.executor&quot;: &quot;Run&quot;,
     &quot;Maven.api-gateway [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.api-gateway [clean,package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.api-gateway [package].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;
   }
 }</component>
   <component name="RunAnythingCache">
     <option name="myCommands">
+      <command value="mvn package" />
       <command value="mvn clean install" />
+      <command value="mvn clean package" />
     </option>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

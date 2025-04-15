@@ -1,15 +1,9 @@
 package com.example.Transaction_Service.Controller;
-
-import com.example.Transaction_Service.Model.Client;
-import com.example.Transaction_Service.Model.Titre;
 import com.example.Transaction_Service.Model.Transaction;
 import com.example.Transaction_Service.Service.TransactionService;
-
-// import com.example.Transaction_Service.kafka.KafkaProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -41,19 +35,4 @@ public class TransactionController {
         List<Transaction> transactions = transactionService.obtenirHistorique(clientId);
         return transactions.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(transactions);
     }
-
-
-
-
-    /*@GetMapping("/client/{clientId}")
-    public ResponseEntity<Client> getClientById(@PathVariable Long clientId) {
-        Client client = transactionService.getClientById(clientId);
-        return client != null ? ResponseEntity.ok(client) : ResponseEntity.notFound().build();
-    }
-
-    @GetMapping("/titre/{titreId}")
-    public ResponseEntity<Titre> getTitreById(@PathVariable Long titreId) {
-        Titre titre = transactionService.getTitreById(titreId);
-        return titre != null ? ResponseEntity.ok(titre) : ResponseEntity.notFound().build();
-    }*/
 }

@@ -1,6 +1,4 @@
 package com.example.Titre_Service.Controller;
-
-
 import com.example.Titre_Service.Model.Titre;
 import com.example.Titre_Service.Service.TitreService;
 import org.springframework.beans.factory.annotation.Autowired;

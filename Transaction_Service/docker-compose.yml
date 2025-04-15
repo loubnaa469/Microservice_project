@@ -1,13 +1,44 @@
 version: '3.8'
 
 networks:
-  my_network:
+  spring-net:
+    driver: bridge
 
 services:
-  postgres:
-    image: postgres:latest
+  # Eureka Server
+  eureka-service:
+    image: loubna/eureka-service:v1
+    container_name: eureka-service
+    ports:
+      - "8761:8761"
+    networks:
+      - spring-net
+
+  # transaction Service
+  client-service:
+    image: loubna/transaction:v1
+    container_name: transaction-service
+    depends_on:
+      - eureka-service
+      - postgres_db
+    environment:
+      SPRING_APPLICATION_NAME: transaction-service
+      EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE: http://eureka-service:8761/eureka
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres_db:5432/TransactionDB
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SERVER_PORT: 8083
+    ports:
+      - "8083:8083"
+    networks:
+      - spring-net
+
+  # PostgreSQL Database
+  postgres_db:
+    image: postgres:15
     container_name: postgres_db
-    restart: always
     environment:
       POSTGRES_DB: TransactionDB
       POSTGRES_USER: postgres
@@ -17,26 +48,8 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
-      - my_network
+      - spring-net
 
-  transaction_service:
-    image: loubna/transaction:v1
-    container_name: transaction_service
-    depends_on:
-      - postgres
-    environment:
-      SPRING_APPLICATION_NAME: Transaction-Service
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/TransactionDB
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: postgres
-      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
-      SERVER_PORT: 8082
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-service:8761/eureka
-    ports:
-      - "8082:8082"
-    networks:
-      - my_network
 
 volumes:
   postgres_data:

@@ -1,5 +1,4 @@
 package com.example.Transaction_Service.Service;
-
 import com.example.Transaction_Service.Model.Client;
 import com.example.Transaction_Service.Model.Titre;
 import com.example.Transaction_Service.Model.Transaction;
@@ -26,10 +25,8 @@ public class TransactionService {
     private final KafkaProducerService kafkaProducerService;
 
     @Autowired
-    public TransactionService(ClientFeignClient clientFeignClient,
-                              TitreFeignClient titreFeignClient,
-                              TransactionRepo transactionRepo,
-                              KafkaProducerService kafkaProducerService) {
+    public TransactionService(ClientFeignClient clientFeignClient, TitreFeignClient titreFeignClient,
+                              TransactionRepo transactionRepo, KafkaProducerService kafkaProducerService) {
         this.clientFeignClient = clientFeignClient;
         this.titreFeignClient = titreFeignClient;
         this.transactionRepo = transactionRepo;
@@ -39,7 +36,6 @@ public class TransactionService {
     public Client getClientById(Long clientId) {
         return clientFeignClient.getClientById(clientId);
     }
-
     public Titre getTitreById(Long titreId) {
         return titreFeignClient.getTitreById(titreId);
     }
