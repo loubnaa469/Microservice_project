@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: titre-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: titre-service
+  template:
+    metadata:
+      labels:
+        app: titre-service
+    spec:
+      containers:
+        - name: titre-service
+          image: loubna523/titre:v1
+          ports:
+            - containerPort: 8081
+          env:
+            - name: SPRING_APPLICATION_NAME
+              value: "titre-service"
+            - name: SERVER_PORT
+              value: "8081"
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: "http://eureka-service:8761/eureka"
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://postgres_db:5432/TitreDB"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "postgres"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "postgres"
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: "update"
+            - name: SPRING_JPA_SHOW_SQL
+              value: "true"
+            - name: LOGGING_LEVEL_ORG_HIBERNATE_SQL
+              value: "DEBUG"
+            - name: LOGGING_LEVEL_ORG_HIBERNATE_TYPE_DESCRIPTOR_SQL
+              value: "TRACE"
+          imagePullPolicy: Always
+---

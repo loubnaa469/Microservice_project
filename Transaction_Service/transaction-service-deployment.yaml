@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: transaction-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: transaction-service
+  template:
+    metadata:
+      labels:
+        app: transaction-service
+    spec:
+      containers:
+        - name: transaction-service
+          image: loubna523/transaction:v1
+          ports:
+            - containerPort: 8083
+          env:
+            - name: SPRING_APPLICATION_NAME
+              value: "transaction-service"
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://postgres_db:5432/TransactionDB"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "postgres"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "postgres"
+            - name: SPRING_JPA_DATABASE_PLATFORM
+              value: "org.hibernate.dialect.PostgreSQLDialect"
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: "update"
+            - name: SERVER_PORT
+              value: "8083"
+            - name: EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE
+              value: "http://eureka-service:8761/eureka"
+            - name: SPRING_JPA_SHOW_SQL
+              value: "true"
+            - name: SPRING_JPA_DEFER_DATASOURCE_INITIALIZATION
+              value: "true"
+            - name: LOGGING_LEVEL_ORG_HIBERNATE_SQL
+              value: "DEBUG"
+            - name: LOGGING_LEVEL_ORG_HIBERNATE_TYPE_DESCRIPTOR_SQL
+              value: "TRACE"
+            - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB
+              value: "DEBUG"
+            - name: LOGGING_LEVEL_COM_EXAMPLE_TRANSACTION_SERVICE_AOP_LOGGINGASPECT
+              value: "DEBUG"
+            - name: LOGGING_LEVEL_COM_EXAMPLE_TRANSACTION_SERVICE_AOP_PERFORMANCEMONITORINGASPECT
+              value: "DEBUG"
+            - name: LOGGING_LEVEL_COM_EXAMPLE_TRANSACTION_SERVICE_AOP_INPUTVALIDATIONASPECT
+              value: "DEBUG"
+          imagePullPolicy: Always
+---

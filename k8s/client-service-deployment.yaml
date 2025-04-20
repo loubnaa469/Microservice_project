@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-service-deployment  # Nom spécifique du déploiement
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client-service  # Label spécifique pour ce microservice
+  template:
+    metadata:
+      labels:
+        app: client-service  # Label spécifique
+    spec:
+      containers:
+        - name: client-service  # Nom spécifique du conteneur
+          image: loubna523/client:v1  # Image spécifique
+          ports:
+            - containerPort: 9090  # Port spécifique pour le microservice
+          env:
+            - name: SPRING_APPLICATION_NAME
+              value: "client-service"
+            - name: EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE
+              value: "http://eureka-service:8761/eureka"
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://postgres_db:5432/ClientDB"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "postgres"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "postgres"
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: "update"
+            - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
+              value: "kafka:9092"
+            - name: SERVER_PORT
+              value: "9090"
+          imagePullPolicy: Always
+---

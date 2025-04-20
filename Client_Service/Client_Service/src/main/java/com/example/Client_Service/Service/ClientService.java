@@ -1,5 +1,4 @@
 package com.example.Client_Service.Service;
-
 import com.example.Client_Service.Model.Client;
 import com.example.Client_Service.repo.ClientRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +24,8 @@ public class ClientService {
         return repo.findById(id).orElse(null);
     }
 
-    // Mise à jour du solde
-    public void mettreAJourSolde(long clientId, double solde) {
-        Optional<Client> clientOpt = repo.findById(clientId);
-        if (clientOpt.isPresent()) {
-            Client client = clientOpt.get();
-            client.setSolde(client.getSolde() + solde);
-            repo.save(client);
-        } else {
-            throw new RuntimeException("Client non trouvé");
-        }
+
+    public Client saveClient(Client client) {
+        return repo.save(client);
     }
 }

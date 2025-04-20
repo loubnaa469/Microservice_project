@@ -63,6 +63,14 @@ public class TransactionService {
             montant = -montant;
         }
 
+        // Calcul du nouveau solde du client
+        double nouveauSolde = client.getSolde() + montant;
+        client.setSolde(nouveauSolde);
+
+        // Mise à jour du client avec le nouveau solde via Feign
+        clientFeignClient.updateClient(clientId, client); // envoi de l'ID et du client à mettre à jour
+
+        // Sauvegarde de la transaction
         Transaction transaction = new Transaction();
         transaction.setClientId(clientId);
         transaction.setTitreId(titreId);
@@ -73,16 +81,9 @@ public class TransactionService {
         transactionRepo.save(transaction);
         LOGGER.info("Transaction sauvegardée avec succès : " + transaction);
 
-        String message = clientId + "," + montant;
-        try {
-            kafkaProducerService.sendTransactionEvent(message);
-            LOGGER.info("Message Kafka envoyé : " + message);
-        } catch (Exception e) {
-            LOGGER.severe("Erreur lors de l'envoi du message Kafka : " + e.getMessage());
-        }
-
         return transaction;
     }
+
 
     public List<Transaction> obtenirHistorique(Long clientId) {
         List<Transaction> transactions = transactionRepo.findByClientId(clientId);

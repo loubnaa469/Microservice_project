@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-service-svc  # Nom spécifique du service
+spec:
+  selector:
+    app: client-service  # Le même label que dans le déploiement
+  ports:
+    - protocol: TCP
+      port: 9090  # Le port exposé pour le service
+      targetPort: 9090  # Port interne pour le conteneur
+  clusterIP: None  # Permet de configurer pour l'accès interne
+---

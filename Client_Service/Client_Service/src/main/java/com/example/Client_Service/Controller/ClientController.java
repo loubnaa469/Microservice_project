@@ -29,5 +29,20 @@ public class ClientController {
         }
         return ResponseEntity.ok(client);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Client> updateClient(@PathVariable int id, @RequestBody Client updatedClient) {
+        Client existingClient = service.getClientById(id);
+        if (existingClient == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        existingClient.setSolde(updatedClient.getSolde());
+        // Tu peux aussi mettre à jour d'autres champs si nécessaire
+
+        Client savedClient = service.saveClient(existingClient);
+        return ResponseEntity.ok(savedClient);
+    }
+
 }
 
